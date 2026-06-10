@@ -1,0 +1,439 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+
+.site-header {
+  background: var(--color-background-primary);
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+.logo-icon {
+  width: 28px; height: 28px;
+  background: #F0997B;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: #4A1B0C;
+  font-size: 15px;
+}
+.header-search {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--color-background-secondary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-md);
+  padding: 0 12px;
+  height: 34px;
+  width: 220px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+.header-nav {
+  display: flex; gap: 4px;
+}
+.header-nav a {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: var(--border-radius-md);
+}
+.header-nav a:hover { background: var(--color-background-secondary); color: var(--color-text-primary); }
+
+.hero {
+  background: var(--color-background-secondary);
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  padding: 40px 24px 32px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  background: #FAECE7;
+  color: #993C1D;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  letter-spacing: 0.3px;
+}
+.hero h1 {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+.hero p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+.hero-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: 0 16px;
+  height: 42px;
+  max-width: 440px;
+  margin: 0 auto;
+  cursor: text;
+}
+.hero-search span { font-size: 14px; color: var(--color-text-secondary); }
+.hero-search i { color: var(--color-text-secondary); font-size: 16px; }
+
+.main { max-width: 720px; margin: 0 auto; padding: 28px 24px 48px; }
+
+.section-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.4px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.guide-card {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 16px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.guide-card:hover { border-color: var(--color-border-secondary); }
+.guide-card-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.guide-card h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+.guide-card p {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+.guide-card .arrow {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  display: flex; align-items: center; gap: 4px;
+}
+
+.icon-coral { background: #FAECE7; color: #993C1D; }
+.icon-teal  { background: #E1F5EE; color: #0F6E56; }
+.icon-amber { background: #FAEEDA; color: #854F0B; }
+.icon-blue  { background: #E6F1FB; color: #185FA5; }
+.icon-pink  { background: #FBEAF0; color: #993556; }
+.icon-green { background: #EAF3DE; color: #3B6D11; }
+.icon-purple{ background: #EEEDFE; color: #534AB7; }
+.icon-gray  { background: #F1EFE8; color: #5F5E5A; }
+
+.featured-section { margin-bottom: 28px; }
+.featured-card {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.featured-card:hover { border-color: var(--color-border-secondary); }
+.featured-icon {
+  width: 42px; height: 42px;
+  border-radius: var(--border-radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.featured-body h3 { font-size: 15px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+.featured-body p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; }
+.featured-meta {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 8px;
+}
+.tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: var(--color-background-secondary);
+  color: var(--color-text-secondary);
+  border: 0.5px solid var(--color-border-tertiary);
+}
+.tag-new { background: #FAECE7; color: #993C1D; border-color: #F5C4B3; }
+
+.checklist-card {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 18px 20px;
+  margin-bottom: 28px;
+}
+.checklist-title {
+  font-size: 15px; font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.checklist-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 0;
+  border-top: 0.5px solid var(--color-border-tertiary);
+  font-size: 13px; color: var(--color-text-primary);
+}
+.checklist-row input[type=checkbox] { accent-color: #D85A30; width: 15px; height: 15px; }
+.checklist-row.done span { color: var(--color-text-secondary); text-decoration: line-through; }
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.stat-card {
+  background: var(--color-background-secondary);
+  border-radius: var(--border-radius-md);
+  padding: 14px;
+  text-align: center;
+}
+.stat-card .num { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+.stat-card .lbl { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+
+.divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 28px 0; }
+</style>
+
+<h2 class="sr-only">Heartopia 攻略站 — 主页</h2>
+
+<header class="site-header">
+  <a class="logo" href="#">
+    <div class="logo-icon"><i class="ti ti-heart" aria-hidden="true"></i></div>
+    Heartopia 攻略
+  </a>
+  <div class="header-search">
+    <i class="ti ti-search" aria-hidden="true"></i>
+    <span>搜索攻略…</span>
+  </div>
+  <nav class="header-nav">
+    <a href="#">新手入门</a>
+    <a href="#">爱好系统</a>
+    <a href="#">图鉴</a>
+    <a href="#">活动</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-badge">持续更新 · 2026版本</div>
+  <h1>Heartopia 攻略站</h1>
+  <p>新手指南、爱好攻略、金币速成、图鉴收集，一站搞定</p>
+  <div class="hero-search">
+    <i class="ti ti-search" aria-hidden="true"></i>
+    <span>搜索鱼类、家具、NPC、任务…</span>
+  </div>
+</section>
+
+<main class="main">
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num">94</div>
+      <div class="lbl">种鱼类</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">8+</div>
+      <div class="lbl">爱好系统</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">20+</div>
+      <div class="lbl">篇攻略</div>
+    </div>
+  </div>
+
+  <div class="section-title">热门攻略</div>
+  <div class="featured-section">
+
+    <div class="featured-card" onclick="sendPrompt('给我展示Heartopia新手入门完整攻略')">
+      <div class="featured-icon icon-coral"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+      <div class="featured-body">
+        <h3>新手入门完整流程</h3>
+        <p>从角色创建到加入 D.G. 公会，前三天该做什么一目了然</p>
+        <div class="featured-meta">
+          <span class="tag tag-new">推荐</span>
+          <span class="tag">新手</span>
+          <span style="font-size:12px; color:var(--color-text-secondary);">约 8 分钟</span>
+        </div>
+      </div>
+      <i class="ti ti-arrow-right" style="margin-left:auto; color:var(--color-text-secondary); font-size:16px; margin-top:2px;" aria-hidden="true"></i>
+    </div>
+
+    <div class="featured-card" onclick="sendPrompt('Heartopia金币速成攻略，如何快速赚钱')">
+      <div class="featured-icon icon-amber"><i class="ti ti-coins" aria-hidden="true"></i></div>
+      <div class="featured-body">
+        <h3>金币速成指南</h3>
+        <p>哪些物品必须加工再卖、彩虹天气怎么利用、每日金币最优路线</p>
+        <div class="featured-meta">
+          <span class="tag tag-new">高人气</span>
+          <span class="tag">经济</span>
+        </div>
+      </div>
+      <i class="ti ti-arrow-right" style="margin-left:auto; color:var(--color-text-secondary); font-size:16px; margin-top:2px;" aria-hidden="true"></i>
+    </div>
+
+    <div class="featured-card" onclick="sendPrompt('Heartopia D.G.公会升级攻略，每个等级解锁什么')">
+      <div class="featured-icon icon-teal"><i class="ti ti-award" aria-hidden="true"></i></div>
+      <div class="featured-body">
+        <h3>D.G. 公会升级全解</h3>
+        <p>每级解锁内容一览，日常/周常任务 XP 最优策略，速通到12级</p>
+        <div class="featured-meta">
+          <span class="tag">进阶</span>
+          <span class="tag">公会</span>
+        </div>
+      </div>
+      <i class="ti ti-arrow-right" style="margin-left:auto; color:var(--color-text-secondary); font-size:16px; margin-top:2px;" aria-hidden="true"></i>
+    </div>
+
+  </div>
+
+  <div class="section-title">爱好系统</div>
+  <div class="guide-grid">
+    <div class="guide-card" onclick="sendPrompt('Heartopia钓鱼系统攻略，如何解锁，稀有鱼在哪里')">
+      <div class="guide-card-icon icon-blue"><i class="ti ti-fish" aria-hidden="true"></i></div>
+      <h3>钓鱼</h3>
+      <p>解锁条件、钓法技巧、94 种鱼分布</p>
+      <div class="arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+    <div class="guide-card" onclick="sendPrompt('Heartopia烹饪系统攻略，哪些菜谱最赚钱')">
+      <div class="guide-card-icon icon-coral"><i class="ti ti-chef-hat" aria-hidden="true"></i></div>
+      <h3>烹饪</h3>
+      <p>高利润菜谱、食材搭配、快速升级</p>
+      <div class="arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+    <div class="guide-card" onclick="sendPrompt('Heartopia园艺攻略，种什么最划算')">
+      <div class="guide-card-icon icon-green"><i class="ti ti-plant" aria-hidden="true"></i></div>
+      <h3>园艺</h3>
+      <p>农作物选择、果酱制作、收益计算</p>
+      <div class="arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+    <div class="guide-card" onclick="sendPrompt('Heartopia昆虫捕捉攻略')">
+      <div class="guide-card-icon icon-amber"><i class="ti ti-bug" aria-hidden="true"></i></div>
+      <h3>昆虫捕捉</h3>
+      <p>D.G. 6级解锁，稀有昆虫位置</p>
+      <div class="arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+    <div class="guide-card" onclick="sendPrompt('Heartopia赏鸟攻略')">
+      <div class="guide-card-icon icon-teal"><i class="ti ti-feather" aria-hidden="true"></i></div>
+      <h3>赏鸟</h3>
+      <p>D.G. 6级解锁，鸟类出没规律</p>
+      <div class="arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+    <div class="guide-card" onclick="sendPrompt('Heartopia宠物系统攻略，如何解锁猫狗')">
+      <div class="guide-card-icon icon-pink"><i class="ti ti-paw" aria-hidden="true"></i></div>
+      <h3>宠物</h3>
+      <p>D.G. 12级解锁猫狗，照料方式</p>
+      <div class="arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-title">今日日常清单</div>
+  <div class="checklist-card">
+    <div class="checklist-title">
+      <i class="ti ti-checkbox" style="font-size:18px; color:#D85A30;" aria-hidden="true"></i>
+      每日任务备忘
+    </div>
+    <div class="checklist-row" id="r1">
+      <input type="checkbox" id="c1" onchange="toggleDone('r1')">
+      <label for="c1"><span>完成 3 个日常任务（最优 XP 来源）</span></label>
+    </div>
+    <div class="checklist-row" id="r2">
+      <input type="checkbox" id="c2" onchange="toggleDone('r2')">
+      <label for="c2"><span>查看天气预报（是否彩虹天或流星雨）</span></label>
+    </div>
+    <div class="checklist-row" id="r3">
+      <input type="checkbox" id="c3" onchange="toggleDone('r3')">
+      <label for="c3"><span>浇水 5 株农作物</span></label>
+    </div>
+    <div class="checklist-row" id="r4">
+      <input type="checkbox" id="c4" onchange="toggleDone('r4')">
+      <label for="c4"><span>检查商店日刷新库存</span></label>
+    </div>
+    <div class="checklist-row" id="r5">
+      <input type="checkbox" id="c5" onchange="toggleDone('r5')">
+      <label for="c5"><span>将原材料加工后再出售</span></label>
+    </div>
+  </div>
+
+  <div class="section-title">地图 & 收集</div>
+  <div class="guide-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 0;">
+    <div class="guide-card" onclick="sendPrompt('Heartopia地图攻略，各区域有什么，NPC位置')">
+      <div class="guide-card-icon icon-purple"><i class="ti ti-map-2" aria-hidden="true"></i></div>
+      <h3>地图 & NPC</h3>
+      <p>各区域功能、商店位置、神秘商人 Doris 刷新规律</p>
+      <div class="arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+    <div class="guide-card" onclick="sendPrompt('Heartopia成就系统，如何解锁全成就')">
+      <div class="guide-card-icon icon-gray"><i class="ti ti-trophy" aria-hidden="true"></i></div>
+      <h3>成就 & 图鉴</h3>
+      <p>15级解锁成就系统，全鱼 / 全虫收集进度</p>
+      <div class="arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+    <div class="guide-card" onclick="sendPrompt('Heartopia活动攻略，流星雨彩虹天气怎么利用')">
+      <div class="guide-card-icon icon-amber"><i class="ti ti-sparkles" aria-hidden="true"></i></div>
+      <h3>活动 & 天气</h3>
+      <p>流星雨、彩虹天、季节活动 Token 兑换优先级</p>
+      <div class="arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+    <div class="guide-card" onclick="sendPrompt('Heartopia房屋装修攻略，家具套装效果')">
+      <div class="guide-card-icon icon-teal"><i class="ti ti-home" aria-hidden="true"></i></div>
+      <h3>家居装修</h3>
+      <p>家具套装加成、Builder Tablet 技巧、主题设计灵感</p>
+      <div class="arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+function toggleDone(rowId) {
+  const row = document.getElementById(rowId);
+  const cb = row.querySelector('input');
+  if (cb.checked) row.classList.add('done');
+  else row.classList.remove('done');
+}
+</script>
